@@ -5,6 +5,7 @@ import androidx.core.app.ComponentActivity;
 
 import org.mariuszgromada.math.mxparser.*;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaParser;
@@ -16,16 +17,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.Executable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     EditText editText;
     TextView sonuç;
-    SQLiteDatabase sqLiteDatabase;
     Cursor cursor;
+  //  Intent intent;
+ //   String pattern = "MM-dd-yyyy";
+ //   SimpleDateFormat simpleDateFormat;
+//    String date1;
     int değerIndex;
-
+//  ayrı yetten ekran dönmesini engeller android:screenOrientation="portrait"
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         sonuç = findViewById(R.id.textView);
         editText = findViewById(R.id.editText);
         editText.setShowSoftInputOnFocus(false);
+      //  simpleDateFormat = new SimpleDateFormat(pattern);
+       //  date1 = simpleDateFormat. format(new Date());
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,14 +119,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void secondControl(String s) {
-     String temp= editText.getText().toString().toLowerCase(Locale.ROOT);
-        if (temp.substring(temp.length() - 1).equals("0")&& (temp.substring(temp.length()-2,temp.length() - 1).equals("x")||
-                temp.substring(temp.length()-2,temp.length() - 1).equals("+")||temp.substring(temp.length()-2,temp.length() - 1).equals("/")||
-                temp.substring(temp.length()-2,temp.length() - 1).equals("-")||temp.substring(temp.length()-2,temp.length() - 1).equals("%")) ){
+        String temp = editText.getText().toString().toLowerCase(Locale.ROOT);
 
-        }else{
+
+        if (temp.equals("0")) {
+
+        } else if (temp.length() >= 2) {
+            if (temp.substring(temp.length() - 1).equals("0") && (temp.substring(temp.length() - 2, temp.length() - 1).equals("x") ||
+                    temp.substring(temp.length() - 2, temp.length() - 1).equals("+") || temp.substring(temp.length() - 2, temp.length() - 1).equals("/") ||
+                    temp.substring(temp.length() - 2, temp.length() - 1).equals("-") || temp.substring(temp.length() - 2, temp.length() - 1).equals("%"))) {
+
+            } else {
+                display(s);
+            }
+        } else {
             display(s);
         }
+
     }
 
     public void setParantez() {
@@ -126,6 +143,8 @@ public class MainActivity extends AppCompatActivity {
         int parantezSayısı = 0;
         int cursorPos = editText.getSelectionStart();
         if (text.equals("")) {
+            display("(");
+            parantezSayısı+=1;
 
         } else {
 
@@ -162,21 +181,38 @@ public class MainActivity extends AppCompatActivity {
 
     public void eşitir(View view) {
         String display = editText.getText().toString();
+        int parantezSayısı=0;
+        for(int i=0;i<display.length();i++){
+            if(display.substring(i,i+1).equals("(")){
+                parantezSayısı++;
+            } if(display.substring(i,i+1).equals(")")){
+                parantezSayısı--;
+            }
+        }
+        while (parantezSayısı>0){
+            display +=")";
+            parantezSayısı--;
+        }
+        editText.setText(display);
         String temp = display.replaceAll("x", "*");
         temp = temp.replaceAll("÷", "/");
         temp = temp.replaceAll("%", "[%]");
+
         Expression ifade = new Expression(temp);
         String resault = String.valueOf(ifade.calculate());
-      if(display.equals("")){
-          Toast.makeText(MainActivity.this,"Bir işlem yapınız",Toast.LENGTH_SHORT).show();
-      }else{
-          if (!resault.equals("NaN")) {
-              sonuç.setText(resault);
-          } else {
-              Toast.makeText(MainActivity.this, "hatalı giriş", Toast.LENGTH_LONG).show();
-              sonuç.setText("Hatalı giriş ");
-          }
-      }
+
+
+
+        if (display.equals("")) {
+            Toast.makeText(MainActivity.this, "Bir işlem yapınız", Toast.LENGTH_SHORT).show();
+        } else {
+            if (!resault.equals("NaN")) {
+                sonuç.setText(resault);
+            } else {
+                Toast.makeText(MainActivity.this, "hatalı giriş", Toast.LENGTH_LONG).show();
+                sonuç.setText("Hatalı giriş ");
+            }
+        }
 
 
     }
@@ -198,9 +234,9 @@ public class MainActivity extends AppCompatActivity {
         String tempEditText = editText.getText().toString().toLowerCase(Locale.ROOT);
         if (tempEditText.equals("tab here")) {
             editText.setText("");
-        } else if (tempEditText.substring(0).equals("") || tempEditText.substring(tempEditText.length()-1).equals("+")
-        ||tempEditText.substring(tempEditText.length()-1).equals("-")||tempEditText.substring(tempEditText.length()-1).equals("x")
-        ||tempEditText.substring(tempEditText.length()-1).equals("/") || tempEditText.substring(tempEditText.length()-1).equals("%")) {
+        } else if (tempEditText.substring(0).equals("") || tempEditText.substring(tempEditText.length() - 1).equals("+")
+                || tempEditText.substring(tempEditText.length() - 1).equals("-") || tempEditText.substring(tempEditText.length() - 1).equals("x")
+                || tempEditText.substring(tempEditText.length() - 1).equals("/") || tempEditText.substring(tempEditText.length() - 1).equals("%") ) {
 
         } else {
             String başlangıç = editText.getText().toString();
@@ -236,13 +272,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void control(String a) {
         String temp = editText.getText().toString().toLowerCase(Locale.ROOT);
-        if(temp.equals("tab here") || temp.equals("")){
+        if (temp.equals("tab here") || temp.equals("")) {
 
-        }
-        else if (temp.substring(temp.length() - 1).equals("+") || temp.substring(temp.length() - 1).equals("-")
+        } else if (temp.substring(temp.length() - 1).equals("+") || temp.substring(temp.length() - 1).equals("-")
                 || temp.substring(temp.length() - 1).equals("/") || temp.substring(temp.length() - 1).equals("x")
                 || temp.substring(temp.length() - 1).equals(".")
-                || temp.substring(temp.length() - 1).equals("%")  ) {
+                || temp.substring(temp.length() - 1).equals("%")) {
         } else {
             if (a.equals("%")) {
                 a.replaceAll("%", "[%]");
@@ -252,5 +287,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void History(View view) {
+        //intent = new Intent(MainActivity.this, MainActivity2Detail.class);
+       // startActivity(intent);
+    }
 }
 

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     app:layoutDescription="@xml/activity_main_scene"
     tools:context=".MainActivity">
 
@@ -38,8 +39,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"        android:layout_weight="0.5">
-
+        android:layout_height="0dp"
+        android:layout_weight="0.5">
         <ImageButton
             android:id="@+id/tekSil"
             android:layout_width="105dp"
@@ -58,18 +59,28 @@
             android:text="x"
             android:textSize="30sp"></ImageButton>
 
+        <Button
+            android:id="@+id/History"
+            android:layout_width="105dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="2sp"
+            android:onClick="History"
+            android:text="History"
+            android:textSize="18dp"></Button>
+
     </RelativeLayout>
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="3"
         android:gravity="top">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="6dp"
+
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <Button
@@ -83,7 +94,7 @@
                 android:onClick="tıkla"
                 android:text="C"
                 android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/parantez"
@@ -97,7 +108,7 @@
                 android:text="()"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/yüzde"
@@ -110,7 +121,7 @@
                 android:onClick="tıkla"
                 android:text="%"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/bölü"
@@ -123,13 +134,14 @@
                 android:onClick="tıkla"
                 android:text="÷"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="6dp">
+            android:layout_weight="1"
+            >
 
             <Button
                 android:id="@+id/yedi"
@@ -142,7 +154,7 @@
                 android:onClick="tıkla"
                 android:text="7"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/sekiz"
@@ -155,7 +167,7 @@
                 android:onClick="tıkla"
                 android:text="8"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/dokuz"
@@ -168,7 +180,7 @@
                 android:onClick="tıkla"
                 android:text="9"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/çarp"
@@ -181,13 +193,14 @@
                 android:onClick="tıkla"
                 android:text="x"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="6dp">
+            android:layout_weight="1"
+            >
 
             <Button
                 android:id="@+id/dört"
@@ -200,7 +213,7 @@
                 android:onClick="tıkla"
                 android:text="4"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/beş"
@@ -213,7 +226,7 @@
                 android:onClick="tıkla"
                 android:text="5"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/altı"
@@ -226,7 +239,7 @@
                 android:onClick="tıkla"
                 android:text="6"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/çıkar"
@@ -239,13 +252,14 @@
                 android:onClick="tıkla"
                 android:text="-"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="6dp">
+            android:layout_weight="1"
+      >
 
             <Button
                 android:id="@+id/bir"
@@ -258,7 +272,7 @@
                 android:onClick="tıkla"
                 android:text="1"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/iki"
@@ -271,7 +285,7 @@
                 android:onClick="tıkla"
                 android:text="2"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/üç"
@@ -284,7 +298,7 @@
                 android:onClick="tıkla"
                 android:text="3"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/topla"
@@ -297,13 +311,14 @@
                 android:onClick="tıkla"
                 android:text="+"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="6dp">
+            android:layout_weight="1"
+            >
 
             <Button
                 android:id="@+id/üçsıfır"
@@ -316,7 +331,7 @@
                 android:onClick="tıkla"
                 android:text="000"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/sıfır"
@@ -329,7 +344,7 @@
                 android:onClick="tıkla"
                 android:text="0"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/nokta"
@@ -342,7 +357,7 @@
                 android:onClick="tıkla"
                 android:text="."
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/eşittir"
@@ -355,7 +370,7 @@
                 android:onClick="eşitir"
                 android:text="="
                 android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
         </TableRow>
 
     </TableLayout>
