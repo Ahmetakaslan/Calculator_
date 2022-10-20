@@ -26,13 +26,8 @@ public class MainActivity extends AppCompatActivity {
     EditText editText;
     TextView sonuç;
     Cursor cursor;
-  //  Intent intent;
- //   String pattern = "MM-dd-yyyy";
- //   SimpleDateFormat simpleDateFormat;
-//    String date1;
     int değerIndex;
 //  ayrı yetten ekran dönmesini engeller android:screenOrientation="portrait"
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
         sonuç = findViewById(R.id.textView);
         editText = findViewById(R.id.editText);
         editText.setShowSoftInputOnFocus(false);
-      //  simpleDateFormat = new SimpleDateFormat(pattern);
-       //  date1 = simpleDateFormat. format(new Date());
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,22 +113,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void secondControl(String s) {
         String temp = editText.getText().toString().toLowerCase(Locale.ROOT);
-
-
         if (temp.equals("0")) {
-
         } else if (temp.length() >= 2) {
             if (temp.substring(temp.length() - 1).equals("0") && (temp.substring(temp.length() - 2, temp.length() - 1).equals("x") ||
                     temp.substring(temp.length() - 2, temp.length() - 1).equals("+") || temp.substring(temp.length() - 2, temp.length() - 1).equals("/") ||
                     temp.substring(temp.length() - 2, temp.length() - 1).equals("-") || temp.substring(temp.length() - 2, temp.length() - 1).equals("%"))) {
-
             } else {
                 display(s);
             }
         } else {
             display(s);
         }
-
     }
 
     public void setParantez() {
@@ -171,14 +159,11 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
     public void settextView(View view) {
         editText.setText(sonuç.getText());
         int a = editText.getSelectionStart();
         editText.setSelection(a + sonuç.getText().length());
-
     }
-
     public void eşitir(View view) {
         String display = editText.getText().toString();
         int parantezSayısı=0;
@@ -200,9 +185,6 @@ public class MainActivity extends AppCompatActivity {
 
         Expression ifade = new Expression(temp);
         String resault = String.valueOf(ifade.calculate());
-
-
-
         if (display.equals("")) {
             Toast.makeText(MainActivity.this, "Bir işlem yapınız", Toast.LENGTH_SHORT).show();
         } else {
@@ -213,10 +195,7 @@ public class MainActivity extends AppCompatActivity {
                 sonuç.setText("Hatalı giriş ");
             }
         }
-
-
     }
-
     public void tekSil(View view) {
         int cursorPos = editText.getSelectionStart();
         if (cursorPos > 0) {
@@ -228,7 +207,6 @@ public class MainActivity extends AppCompatActivity {
             editText.setSelection(cursorPos - 1);
         }
     }
-
     private void update() {
         int cursorPosition = editText.getSelectionStart();
         String tempEditText = editText.getText().toString().toLowerCase(Locale.ROOT);
@@ -246,10 +224,7 @@ public class MainActivity extends AppCompatActivity {
             editText.setText(newtext);
             editText.setSelection(cursorPosition + 3);
         }
-
     }
-
-
     public void display(String a) {
         // burada en fazla 15 karakter etmesini kontorol etmek için yaapıldı ama başarısıx
         // 13/10/2022
@@ -265,11 +240,8 @@ public class MainActivity extends AppCompatActivity {
             String newText = eski + a + yeni;
             editText.setText(newText);
         }
-
         editText.setSelection(cursorPosition + a.length());
     }
-
-
     public void control(String a) {
         String temp = editText.getText().toString().toLowerCase(Locale.ROOT);
         if (temp.equals("tab here") || temp.equals("")) {
@@ -284,12 +256,6 @@ public class MainActivity extends AppCompatActivity {
             }
             display(a);
         }
-    }
-
-
-    public void History(View view) {
-        //intent = new Intent(MainActivity.this, MainActivity2Detail.class);
-       // startActivity(intent);
     }
 }
 
